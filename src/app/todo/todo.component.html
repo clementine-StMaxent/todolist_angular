@@ -1,0 +1,25 @@
+<h1>Liste des tâches à réaliser.</h1>
+
+<ul class="list-group">
+    <!-- Index pour récupérer les numéros -->
+    <li class="list-group-item" *ngFor="let todo of todos, let i = index">
+
+        <div [ngClass]="{encours: todo.todoStatus, terminee: !todo.todoStatus }">
+            <a [href]="todo.todoImage">
+                <img [src]="todo.todoImage" alt="">
+            </a>
+            {{ todo.todoName }}
+
+            <!-- disabled => pour cacher le status si celui-ci est true -->
+            <!-- le (click) est un eventBinding -->
+            <button class="btn btn-primary btn-encours" [disabled]="todo.todoStatus" (click)="OnChangeStatus(i)">
+                En cours
+            </button>
+            <!-- le "!" permet de cacher si celui est faux -->
+            <button class="btn btn-success" [disabled]="!todo.todoStatus" (click)="OnChangeStatus(i)">
+                Terminé
+            </button>
+
+        </div>
+    </li>
+</ul>
